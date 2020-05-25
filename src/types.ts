@@ -9,4 +9,8 @@ interface CategoryProps {
   items: Array<ItemProps>;
 }
 
-export { ItemProps, CategoryProps };
+interface SourceProps {
+  [key: string]: Array<ItemProps>;
+}
+
+export { ItemProps, CategoryProps, SourceProps };

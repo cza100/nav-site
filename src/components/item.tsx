@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Card, Avatar, Col } from 'antd';
-import { Link } from 'umi';
 
 const { Meta } = Card;
 
@@ -18,6 +17,7 @@ const Item: React.FC<Props> = ({ title, url, desc }: Props) => {
           hoverable={true}
           style={{ width: 300 }}
           bodyStyle={{ padding: 15 }}
+          bordered={false}
         >
           <Meta
             avatar={
@@ -27,7 +27,7 @@ const Item: React.FC<Props> = ({ title, url, desc }: Props) => {
             }
             style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}
             title={title}
-            description={desc}
+            description={desc || '简介'}
           />
         </Card>
       </a>

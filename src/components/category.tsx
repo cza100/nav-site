@@ -1,15 +1,26 @@
-import React, { useState } from 'react';
-import { Card, Avatar, Row, Col } from 'antd';
+import React, { useRef } from 'react';
+import { Row, Typography } from 'antd';
 
 import Item from './item';
 
 import { CategoryProps } from '../types';
 
+const { Text } = Typography;
+
 const Category: React.FC<CategoryProps> = ({ title, items }) => {
+  const anchor = useRef();
+
   return (
-    <Row gutter={[10, 16]}>
-      <Item title="知乎" url="https://www.zhihu.com" desc="有问题，上知乎。" />
-    </Row>
+    <div>
+      <Text code strong type="secondary" id={title}>
+        {title}
+      </Text>
+      <Row gutter={[10, 16]}>
+        {items.map((item, index) => (
+          <Item key={index} {...item} />
+        ))}
+      </Row>
+    </div>
   );
 };
 

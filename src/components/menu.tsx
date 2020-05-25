@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { Affix, Button, Drawer } from 'antd';
 import { UnorderedListOutlined } from '@ant-design/icons';
 
-const Menu: React.FC = () => {
+import { SourceProps } from '../types';
+
+const Menu: React.FC<{ data: SourceProps | null }> = ({ data }) => {
   const [visible, setVisible] = useState<boolean>(false);
 
   const showDrawer = (): void => {
@@ -29,9 +31,27 @@ const Menu: React.FC = () => {
         onClose={onClose}
         visible={visible}
       >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+        {data ? (
+          Object.keys(data).map(key => (
+            <div key={key} style={{ margin: 5 }}>
+              <Button
+                type="dashed"
+                onClick={() => {
+                  onClose();
+                  let node = document.getElementById(key);
+                  window.scrollTo({
+                    behavior: 'smooth',
+                    top: node?.offsetTop,
+                  });
+                }}
+              >
+                {key}
+              </Button>
+            </div>
+          ))
+        ) : (
+          <div></div>
+        )}
       </Drawer>
     </div>
   );
